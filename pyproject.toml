@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "deep3"
-version = "0.0.2"
+version = "0.0.3"
 description = "Deep3 Labs API"
 authors = ["OpenAPI Generator Community <team@openapitools.org>"]
 license = "NoLicense"
