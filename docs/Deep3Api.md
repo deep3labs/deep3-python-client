@@ -5,18 +5,20 @@ All URIs are relative to *https://api.deep3.ai/v0*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_chains**](Deep3Api.md#get_chains) | **GET** /chains | Get currently supported chains and the active machine learning models
+[**get_deep_shield_fr_prediction**](Deep3Api.md#get_deep_shield_fr_prediction) | **GET** /deepshield-fr/chain/{chainId}/account/{address} | Get a DeepShield-FR prediction
+[**get_deep_shield_hft_prediction**](Deep3Api.md#get_deep_shield_hft_prediction) | **GET** /deepshield-hft/chain/{chainId}/account/{address} | Get a DeepShield-HFT prediction
 [**get_hodl_c1_prediction**](Deep3Api.md#get_hodl_c1_prediction) | **GET** /hodl-c1/chain/{chainId}/account/{address} | Get a HODL-C1 prediction
 [**get_hodl_c1_x_token_prediction**](Deep3Api.md#get_hodl_c1_x_token_prediction) | **POST** /hodl-c1/x/token | Get a HODL-C1 cross-chain token prediction
 [**get_hodl_c1_x_token_predictions**](Deep3Api.md#get_hodl_c1_x_token_predictions) | **POST** /hodl-c1/x/tokens | Get HODL-C1 cross-chain token predictions
-[**get_hodler_prediction**](Deep3Api.md#get_hodler_prediction) | **GET** /hodler/{chainId}/{publicAddress} | Get a Hodler prediction
 [**get_models**](Deep3Api.md#get_models) | **GET** /models | Get active machine learning models and the chains they support
 [**get_prediction**](Deep3Api.md#get_prediction) | **GET** /prediction/{model}/{chainId}/{publicAddress} | Get a prediction
+[**get_stake_sage_c_prediction**](Deep3Api.md#get_stake_sage_c_prediction) | **GET** /stakesage-c/chain/{chainId}/account/{address} | Get a StakeSage-C prediction
 [**get_stake_sage_h_prediction**](Deep3Api.md#get_stake_sage_h_prediction) | **GET** /stakesage-h/chain/{chainId}/account/{address} | Get a StakeSage-H prediction
 [**get_stake_sage_l_prediction**](Deep3Api.md#get_stake_sage_l_prediction) | **GET** /stakesage-l/chain/{chainId}/account/{address} | Get a StakeSage-L prediction
 
 
 # **get_chains**
-> ChainsResponse get_chains()
+> List[ChainsResponseInner] get_chains()
 
 Get currently supported chains and the active machine learning models
 
@@ -29,7 +31,7 @@ Will return currently supported chains
 import time
 import os
 import deep3
-from deep3.models.chains_response import ChainsResponse
+from deep3.models.chains_response_inner import ChainsResponseInner
 from deep3.rest import ApiException
 from pprint import pprint
 
@@ -70,7 +72,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ChainsResponse**](ChainsResponse.md)
+[**List[ChainsResponseInner]**](ChainsResponseInner.md)
 
 ### Authorization
 
@@ -85,6 +87,164 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A list of chain objects |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_deep_shield_fr_prediction**
+> DeepShieldFrResponse get_deep_shield_fr_prediction(chain_id, address)
+
+Get a DeepShield-FR prediction
+
+Will return the prediction
+
+### Example
+
+* Api Key Authentication (ApiKey):
+```python
+import time
+import os
+import deep3
+from deep3.models.deep_shield_fr_response import DeepShieldFrResponse
+from deep3.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.deep3.ai/v0
+# See configuration.py for a list of all supported configuration parameters.
+configuration = deep3.Configuration(
+    host = "https://api.deep3.ai/v0"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKey
+configuration.api_key['ApiKey'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKey'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with deep3.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = deep3.Deep3Api(api_client)
+    chain_id = 3.4 # float | The chain id for the prediction
+    address = 'address_example' # str | The address for the account
+
+    try:
+        # Get a DeepShield-FR prediction
+        api_response = api_instance.get_deep_shield_fr_prediction(chain_id, address)
+        print("The response of Deep3Api->get_deep_shield_fr_prediction:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling Deep3Api->get_deep_shield_fr_prediction: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **chain_id** | **float**| The chain id for the prediction | 
+ **address** | **str**| The address for the account | 
+
+### Return type
+
+[**DeepShieldFrResponse**](DeepShieldFrResponse.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A prediction object |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_deep_shield_hft_prediction**
+> DeepShieldHftResponse get_deep_shield_hft_prediction(chain_id, address)
+
+Get a DeepShield-HFT prediction
+
+Will return the prediction
+
+### Example
+
+* Api Key Authentication (ApiKey):
+```python
+import time
+import os
+import deep3
+from deep3.models.deep_shield_hft_response import DeepShieldHftResponse
+from deep3.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.deep3.ai/v0
+# See configuration.py for a list of all supported configuration parameters.
+configuration = deep3.Configuration(
+    host = "https://api.deep3.ai/v0"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKey
+configuration.api_key['ApiKey'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKey'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with deep3.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = deep3.Deep3Api(api_client)
+    chain_id = 3.4 # float | The chain id for the prediction
+    address = 'address_example' # str | The address for the account
+
+    try:
+        # Get a DeepShield-HFT prediction
+        api_response = api_instance.get_deep_shield_hft_prediction(chain_id, address)
+        print("The response of Deep3Api->get_deep_shield_hft_prediction:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling Deep3Api->get_deep_shield_hft_prediction: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **chain_id** | **float**| The chain id for the prediction | 
+ **address** | **str**| The address for the account | 
+
+### Return type
+
+[**DeepShieldHftResponse**](DeepShieldHftResponse.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A prediction object |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -323,87 +483,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_hodler_prediction**
-> HodlerResponse get_hodler_prediction(chain_id, public_address)
-
-Get a Hodler prediction
-
-Will return the prediction
-
-### Example
-
-* Api Key Authentication (ApiKey):
-```python
-import time
-import os
-import deep3
-from deep3.models.hodler_response import HodlerResponse
-from deep3.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.deep3.ai/v0
-# See configuration.py for a list of all supported configuration parameters.
-configuration = deep3.Configuration(
-    host = "https://api.deep3.ai/v0"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: ApiKey
-configuration.api_key['ApiKey'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['ApiKey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with deep3.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = deep3.Deep3Api(api_client)
-    chain_id = 3.4 # float | The chain id for the prediction
-    public_address = 'public_address_example' # str | The public address for the wallet
-
-    try:
-        # Get a Hodler prediction
-        api_response = api_instance.get_hodler_prediction(chain_id, public_address)
-        print("The response of Deep3Api->get_hodler_prediction:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling Deep3Api->get_hodler_prediction: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **chain_id** | **float**| The chain id for the prediction | 
- **public_address** | **str**| The public address for the wallet | 
-
-### Return type
-
-[**HodlerResponse**](HodlerResponse.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | A prediction object |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **get_models**
-> ModelsResponse get_models()
+> List[ModelsResponseInner] get_models()
 
 Get active machine learning models and the chains they support
 
@@ -416,7 +497,7 @@ Will return active machine learning models
 import time
 import os
 import deep3
-from deep3.models.models_response import ModelsResponse
+from deep3.models.models_response_inner import ModelsResponseInner
 from deep3.rest import ApiException
 from pprint import pprint
 
@@ -457,7 +538,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ModelsResponse**](ModelsResponse.md)
+[**List[ModelsResponseInner]**](ModelsResponseInner.md)
 
 ### Authorization
 
@@ -539,6 +620,85 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PredictionResponse**](PredictionResponse.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A prediction object |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_stake_sage_c_prediction**
+> StakeSageCResponse get_stake_sage_c_prediction(chain_id, address)
+
+Get a StakeSage-C prediction
+
+Will return the prediction
+
+### Example
+
+* Api Key Authentication (ApiKey):
+```python
+import time
+import os
+import deep3
+from deep3.models.stake_sage_c_response import StakeSageCResponse
+from deep3.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.deep3.ai/v0
+# See configuration.py for a list of all supported configuration parameters.
+configuration = deep3.Configuration(
+    host = "https://api.deep3.ai/v0"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKey
+configuration.api_key['ApiKey'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKey'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with deep3.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = deep3.Deep3Api(api_client)
+    chain_id = 3.4 # float | The chain id for the prediction
+    address = 'address_example' # str | The address for the account
+
+    try:
+        # Get a StakeSage-C prediction
+        api_response = api_instance.get_stake_sage_c_prediction(chain_id, address)
+        print("The response of Deep3Api->get_stake_sage_c_prediction:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling Deep3Api->get_stake_sage_c_prediction: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **chain_id** | **float**| The chain id for the prediction | 
+ **address** | **str**| The address for the account | 
+
+### Return type
+
+[**StakeSageCResponse**](StakeSageCResponse.md)
 
 ### Authorization
 

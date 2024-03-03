@@ -18,16 +18,16 @@ import re  # noqa: F401
 import json
 
 
-from typing import Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr
+from typing import Optional, Union
+from pydantic import BaseModel, Field, StrictFloat, StrictInt
 
-class HodlC1XTokenRequestMappingsInner(BaseModel):
+class DeepShieldFrResponse(BaseModel):
     """
-    HodlC1XTokenRequestMappingsInner
+    DeepShieldFrResponse
     """
-    chain_id: Union[StrictFloat, StrictInt] = Field(..., alias="chainId")
-    address: StrictStr = Field(...)
-    __properties = ["chainId", "address"]
+    code: Union[StrictFloat, StrictInt] = Field(...)
+    result: Optional[Union[StrictFloat, StrictInt]] = None
+    __properties = ["code", "result"]
 
     class Config:
         """Pydantic configuration"""
@@ -43,8 +43,8 @@ class HodlC1XTokenRequestMappingsInner(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> HodlC1XTokenRequestMappingsInner:
-        """Create an instance of HodlC1XTokenRequestMappingsInner from a JSON string"""
+    def from_json(cls, json_str: str) -> DeepShieldFrResponse:
+        """Create an instance of DeepShieldFrResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -56,17 +56,17 @@ class HodlC1XTokenRequestMappingsInner(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> HodlC1XTokenRequestMappingsInner:
-        """Create an instance of HodlC1XTokenRequestMappingsInner from a dict"""
+    def from_dict(cls, obj: dict) -> DeepShieldFrResponse:
+        """Create an instance of DeepShieldFrResponse from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return HodlC1XTokenRequestMappingsInner.parse_obj(obj)
+            return DeepShieldFrResponse.parse_obj(obj)
 
-        _obj = HodlC1XTokenRequestMappingsInner.parse_obj({
-            "chain_id": obj.get("chainId"),
-            "address": obj.get("address")
+        _obj = DeepShieldFrResponse.parse_obj({
+            "code": obj.get("code"),
+            "result": obj.get("result")
         })
         return _obj
 

@@ -18,16 +18,17 @@ import re  # noqa: F401
 import json
 
 
-from typing import Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr
+from typing import List, Union
+from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr, conlist
 
-class HodlC1XTokenRequestMappingsInner(BaseModel):
+class ChainsResponseInner(BaseModel):
     """
-    HodlC1XTokenRequestMappingsInner
+    ChainsResponseInner
     """
     chain_id: Union[StrictFloat, StrictInt] = Field(..., alias="chainId")
-    address: StrictStr = Field(...)
-    __properties = ["chainId", "address"]
+    name: StrictStr = Field(...)
+    models: conlist(StrictStr) = Field(...)
+    __properties = ["chainId", "name", "models"]
 
     class Config:
         """Pydantic configuration"""
@@ -43,8 +44,8 @@ class HodlC1XTokenRequestMappingsInner(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> HodlC1XTokenRequestMappingsInner:
-        """Create an instance of HodlC1XTokenRequestMappingsInner from a JSON string"""
+    def from_json(cls, json_str: str) -> ChainsResponseInner:
+        """Create an instance of ChainsResponseInner from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -56,17 +57,18 @@ class HodlC1XTokenRequestMappingsInner(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> HodlC1XTokenRequestMappingsInner:
-        """Create an instance of HodlC1XTokenRequestMappingsInner from a dict"""
+    def from_dict(cls, obj: dict) -> ChainsResponseInner:
+        """Create an instance of ChainsResponseInner from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return HodlC1XTokenRequestMappingsInner.parse_obj(obj)
+            return ChainsResponseInner.parse_obj(obj)
 
-        _obj = HodlC1XTokenRequestMappingsInner.parse_obj({
+        _obj = ChainsResponseInner.parse_obj({
             "chain_id": obj.get("chainId"),
-            "address": obj.get("address")
+            "name": obj.get("name"),
+            "models": obj.get("models")
         })
         return _obj
 
